@@ -1,3 +1,13 @@
+PATH
+  remote: .
+  specs:
+    jekyll-theme-simple-texture (0.2.3)
+      jekyll (= 3.7.2)
+      jekyll-feed (~> 0.9.3)
+      jekyll-redirect-from (~> 0.12.1)
+      jekyll-seo-tag (~> 2.4, >= 2.4.0)
+      jekyll-sitemap (~> 1.2, >= 1.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -37,12 +47,6 @@ GEM
       jekyll (~> 3.3)
     jekyll-sitemap (1.2.0)
       jekyll (~> 3.3)
-    jekyll-theme-simple-texture (0.2.3)
-      jekyll (= 3.7.2)
-      jekyll-feed (~> 0.9.3)
-      jekyll-redirect-from (~> 0.12.1)
-      jekyll-seo-tag (~> 2.4, >= 2.4.0)
-      jekyll-sitemap (~> 1.2, >= 1.2.0)
     jekyll-watch (2.0.0)
       listen (~> 3.0)
     kramdown (1.16.2)
@@ -55,6 +59,7 @@ GEM
     pathutil (0.16.1)
       forwardable-extended (~> 2.6)
     public_suffix (3.0.2)
+    rake (10.5.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -71,12 +76,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  jekyll (= 3.7.2)
-  jekyll-feed
-  jekyll-redirect-from
-  jekyll-seo-tag
-  jekyll-sitemap
-  jekyll-theme-simple-texture
+  bundler (~> 1.12)
+  jekyll-theme-simple-texture!
+  rake (~> 10.0)
 
 BUNDLED WITH
    1.16.1
