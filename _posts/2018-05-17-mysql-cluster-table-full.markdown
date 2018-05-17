@@ -78,11 +78,11 @@ hostname=172.17.29.57
 可以把DataMemory和IndexMemory改大一些（根据节点实际内存改大），分别设置为32G和6G。
 
 整个步骤如下：
-## 关闭manager和两台data node上的supervisor
-## 在manager上关闭集群，/opt/mysql/server-5.7/bin/ndb_mgm -e shutdown
-## 修改/var/lib/mysql-cluster/config.ini中[ndbd]下的DataMemory与IndexMemory
-## 重启manager节点：sudo /opt/mysql/server-5.7/bin/ndb_mgmd -f /var/lib/mysql-cluster/config.ini --configdir=/var/lib/mysql-cluster  --reload
-## 重启manager和data node节点上的supervisor
+> 1.关闭manager和两台data node上的supervisor
+> 2.在manager上关闭集群，/opt/mysql/server-5.7/bin/ndb_mgm -e shutdown
+> 3.修改/var/lib/mysql-cluster/config.ini中[ndbd]下的DataMemory与IndexMemory
+> 4.重启manager节点：sudo /opt/mysql/server-5.7/bin/ndb_mgmd -f /var/lib/mysql-cluster/config.ini --configdir=/var/lib/mysql-cluster  --reload
+> 5.重启manager和data node节点上的supervisor
 
 重启过程比较慢，要等两个data node数据索引全部建好才行，api node在data node启动后会自动连接。
 完成之后，再次查看：
