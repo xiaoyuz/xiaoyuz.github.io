@@ -3,9 +3,10 @@ layout: post
 title:  "spring-boot 2.0使用redis+lua出错"
 date:   2018-05-16 17:14:00 +0800
 categories: redis spring
+tags: redis spring bug
 ---
 在使用spring-boot 2.0.3与spring data redis时，加载lua脚本：
-{% highlight kotlin %}
+{% highlight kotlin linenos %}
 private val script1 = """
         local keyName = KEYS[1]
         local indexes = {}
@@ -78,7 +79,7 @@ compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
 compile group: 'org.apache.commons', name: 'commons-pool2', version: '2.5.0'
 {% endhighlight %}
 然后再redis config里配置：
-{% highlight kotlin %}
+{% highlight kotlin linenos %}
 @Bean
 fun jedisConnectionFactory() = JedisConnectionFactory()
 @Bean
