@@ -12,7 +12,6 @@ tags: mysql
 [mysqld]
 ndbcluster
 socket=/var/run/mysqld/mysqld.sock
-
 [mysql_cluster]
 ndb-connectstring=172.17.29.209
 [client]
