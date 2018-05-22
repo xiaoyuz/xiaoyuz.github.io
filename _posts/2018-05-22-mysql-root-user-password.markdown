@@ -6,11 +6,8 @@ categories: mysql
 tags: mysql
 ---
 在mysqld节点上登录root时，发现密码总是不正确，或者忘记密码，需要在无密码登录情况下修改密码。
-首先修改mysqld上配置文件，允许无密码登录。
-{% highlight shell %}
-sudo vi /etc/my.cnf
-{% endhighlight %}
-输出配置内容为：
+首先修改mysqld上配置文件/etc/my.cnf，允许无密码登录。
+配置内容为：
 {% highlight shell %}
 [mysqld]
 ndbcluster
