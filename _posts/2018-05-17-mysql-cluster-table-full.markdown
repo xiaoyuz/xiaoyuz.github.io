@@ -94,3 +94,32 @@ Node 3: Index usage is 4%(38825 8K pages of total 786464)
 {% endhighlight %}
 1048576 * 32 / 1024 = 32768
 32G的设置生效了。
+
+7月5日更新：
+修改这个配置其实不需要先关闭整个集群，这样数据服务会停止很久。
+由于我们的集群结构是一个manager，两个data node，data node互为备份，所以可以rolling retart。
+官网链接：https://dev.mysql.com/doc/refman/5.7/en/mysql-cluster-rolling-restart.html
+先关闭manager和data node上的supervisor。
+然后进入mgm，show一下：
+{% highlight shell %}
+ndb_mgm> show
+Connected to Management Server at: 172.17.31.20:1186
+Cluster Configuration
+---------------------
+[ndbd(NDB)]	2 node(s)
+id=2	@172.17.31.22  (mysql-5.7.17 ndb-7.5.5, Nodegroup: 0)
+id=3	@172.17.31.21  (mysql-5.7.17 ndb-7.5.5, Nodegroup: 0)
+
+[ndb_mgmd(MGM)]	1 node(s)
+id=1	@172.17.31.20  (mysql-5.7.17 ndb-7.5.5)
+
+[mysqld(API)]	2 node(s)
+id=4	@172.17.31.25  (mysql-5.7.17 ndb-7.5.5)
+id=5	@172.17.31.24  (mysql-5.7.17 ndb-7.5.5)
+{% endhighlight %}
+在mgm里关闭manager：1 stop。 或者直接杀死进程。
+修改完config.ini的配置之后，reload启动manager：sudo /opt/mysql/server-5.7/bin/ndb_mgmd -f /var/lib/mysql-cluster/config.ini --configdir=/var/lib/mysql-cluster --reload
+然后再进入mgm，分别重新启动两个数据节点：
+2 restart
+3 restart
+然后all report memory一下，看到total值有变化了。
